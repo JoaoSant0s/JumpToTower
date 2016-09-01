@@ -12,8 +12,8 @@ namespace JumpToTower.Fields{
 
 	    float angle;            // angle to determin the height by using the sinus
 	    protected float toDegrees   = Mathf.PI/180;    // radians to degrees
-	     void Start()
-	    {
+
+	    void Start(){
 	        initialPosition = transform.position.y;
 	        angle = (direction ? 0 : 360);
 	    }

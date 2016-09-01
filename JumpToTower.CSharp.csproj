@@ -63,9 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\BlocksController.cs" />
-    <Compile Include="Assets\Script\InputController.cs" />
-    <Compile Include="Assets\Script\PlayerController.cs" />
+    <Compile Include="Assets\Script\Collectables\CoinController.cs" />
+    <Compile Include="Assets\Script\Collectables\CoinModule.cs" />
+    <Compile Include="Assets\Script\Common\Common.cs" />
+    <Compile Include="Assets\Script\Controller\GameManager.cs" />
+    <Compile Include="Assets\Script\Controller\ParticleSystemController.cs" />
+    <Compile Include="Assets\Script\Fields\AltarController.cs" />
+    <Compile Include="Assets\Script\Fields\BlocksController.cs" />
+    <Compile Include="Assets\Script\Level\BlockModule.cs" />
+    <Compile Include="Assets\Script\Level\LevelModule.cs" />
+    <Compile Include="Assets\Script\Player\InputController.cs" />
+    <Compile Include="Assets\Script\Player\PlayerController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
