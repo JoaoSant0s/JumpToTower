@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JumpToTower.Collectables;
-
+[System.Serializable]
 public class LevelModule : ScriptableObject {
 
     [Header("Level Number")]

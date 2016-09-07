@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-public class CoinModule : ScriptableObject {
-
+[System.Serializable]
+public class CoinModule {
+    #region Unity Fields
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
     private Vector3 position;
+    #endregion Unity Fields
 
     public void SetData(Transform obstacles) {
-        GameObject block = (GameObject)Instantiate(prefab, position, Quaternion.identity);
+        GameObject block = (GameObject) Object.Instantiate(prefab, position, Quaternion.identity);
         block.transform.SetParent(obstacles);
     }
 }
