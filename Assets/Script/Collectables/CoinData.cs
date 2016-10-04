@@ -3,16 +3,28 @@ using System.Collections;
 
 
 namespace JumpToTower.Collectables {
-    public class CoinController : MonoBehaviour {
+    public class CoinData : MonoBehaviour {
 
-        public delegate void CoinCollected(Transform position);
+        public delegate void CoinCollected(CoinData coinData);
 
         public static event CoinCollected OnCoinCollected;
 
         private bool isActivy;
 
+        [SerializeField]
+        float mount = 1;
+
         void Start() {
             isActivy = true;
+        }
+
+        public float Mount {
+            get {
+                return mount;
+            }
+            set {
+                mount = value;
+            }
         }
 
         void OnTriggerEnter(Collider other) {
@@ -21,7 +33,7 @@ namespace JumpToTower.Collectables {
             if (!isActivy) return;
 
             isActivy = false;
-            OnCoinCollected(transform);
+            OnCoinCollected(this);
 
             StartCoroutine(DestroyObject());
         }

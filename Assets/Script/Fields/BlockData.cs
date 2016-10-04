@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 namespace JumpToTower.Fields{
-	public class BlocksController : MonoBehaviour {
+	public class BlockData : MonoBehaviour {
 	    [SerializeField]
 	    bool direction = true;
 	    [SerializeField]

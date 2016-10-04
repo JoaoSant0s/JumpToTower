@@ -9,17 +9,17 @@ namespace JumpToTower.Managers {
         private GameObject particlePrefab;
         // Use this for initialization
         void Start() {
-            CoinController.OnCoinCollected += ActivyCoinParticle;
+            CoinData.OnCoinCollected += ActivyCoinParticle;
         }
 
         void OnDestroy() {
-            CoinController.OnCoinCollected -= ActivyCoinParticle;
+            CoinData.OnCoinCollected -= ActivyCoinParticle;
         }
 
-        void ActivyCoinParticle(Transform parent) {
-            var particle = Instantiate(particlePrefab, parent.position, Quaternion.identity) as GameObject;
+        void ActivyCoinParticle(CoinData parent) {
+            var particle = Instantiate(particlePrefab, parent.transform.position, Quaternion.identity) as GameObject;
 
-            particle.transform.SetParent(parent);
+            particle.transform.SetParent(parent.transform);
             particle.GetComponentInChildren<ParticleSystem>().Play();  
         }
     }

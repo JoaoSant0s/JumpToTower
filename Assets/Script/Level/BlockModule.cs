@@ -9,16 +9,18 @@ public class BlockModule {
 	private GameObject prefab;
 	[SerializeField]
 	private float speed;
-	[SerializeField]
+    [SerializeField]
+    private int id;
+    [SerializeField]
 	private Vector3 position;
     #endregion Unity Fields
 
-    // Use this for initialization
     public void SetData (Transform obstacles) {
 		GameObject block = (GameObject) Object.Instantiate (prefab, position, Quaternion.identity);
-        Debug.Log(block);
-		block.GetComponent<BlocksController>().Speed = speed;
-		block.transform.SetParent (obstacles);
+        
+		block.GetComponent<BlockData>().Speed = speed;
+        block.GetComponent<BlockData>().name = string.Format("Block: {0}", id);
+        block.transform.SetParent (obstacles);
 	}
 
 }
