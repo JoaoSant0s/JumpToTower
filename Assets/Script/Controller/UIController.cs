@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using JumpToTower.Collectables;
+using JumpToTower.Managers;
 
     namespace JumpToTower.UI {
     public class UIController : MonoBehaviour {
@@ -15,14 +16,21 @@ using JumpToTower.Collectables;
         void Start() {
             cointText.text = string.Format(coinBaseText, mountCoin);
             CoinData.OnCoinCollected += ChangeCoinText;
+            GameManager.OnResetCoin += ResetCoinText;
         }
 
         void OnDestroy() {
             CoinData.OnCoinCollected -= ChangeCoinText;
+            GameManager.OnResetCoin -= ResetCoinText;
         }
 
         private void ChangeCoinText (GoalModule.GoalType type, float amount) {
             mountCoin += amount;
+            cointText.text = string.Format(coinBaseText, mountCoin);
+        }
+
+        private void ResetCoinText() {
+            mountCoin = 0;
             cointText.text = string.Format(coinBaseText, mountCoin);
         }
 

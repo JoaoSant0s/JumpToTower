@@ -66,9 +66,13 @@
     <Compile Include="Assets\Script\Collectables\CoinData.cs" />
     <Compile Include="Assets\Script\Collectables\CoinModule.cs" />
     <Compile Include="Assets\Script\Common\Common.cs" />
+    <Compile Include="Assets\Script\Controller\EndGameController.cs" />
     <Compile Include="Assets\Script\Controller\GameManager.cs" />
+    <Compile Include="Assets\Script\Controller\MenuController.cs" />
     <Compile Include="Assets\Script\Controller\ParticleController.cs" />
     <Compile Include="Assets\Script\Controller\ParticleSystemController.cs" />
+    <Compile Include="Assets\Script\Controller\SettingsController.cs" />
+    <Compile Include="Assets\Script\Controller\StartController.cs" />
     <Compile Include="Assets\Script\Controller\UIController.cs" />
     <Compile Include="Assets\Script\Fields\AltarController.cs" />
     <Compile Include="Assets\Script\Fields\BlockData.cs" />

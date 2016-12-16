@@ -32,4 +32,8 @@ public static class Common {
     public static List<T> Clone<T>(this IList<T> listToClone) where T : ICloneable {
         return listToClone.Select(item => (T)item.Clone()).ToList();
     }
+
+    public static void TimeZone(bool isActive) {
+        Time.timeScale = (!isActive)? 1f: 0f;
+    }
 }

@@ -7,8 +7,17 @@ using JumpToTower.Player;
 namespace JumpToTower.Managers{
     public class GameManager : MonoBehaviour{
 
+        public delegate void StartActivity();
+        public static event StartActivity OnStartActivity;
+
         public delegate void GoalComplete();
         public static event GoalComplete OnGoalComplete;
+
+        public delegate void EndGame();
+        public static event EndGame OnEndGame;
+
+        public delegate void ResetCoin();
+        public static event ResetCoin OnResetCoin;
 
         [SerializeField]
         private List<Common.LEVEL> levelSequece;
@@ -44,15 +53,23 @@ namespace JumpToTower.Managers{
             CoinData.OnCoinCollected += ActivyCoinParticle;
         }
 
+        void OnDestroy() {
+            CoinData.OnCoinCollected -= ActivyCoinParticle;
+        }
+
+        void Update() {
+            if (Input.GetButtonDown("start")) {
+                if (OnStartActivity != null) OnStartActivity();
+            }
+        }
+
         void DefineLevel() {
             Common.DestroyChildren(obstacles);
             NextLevel();
             InstantiatePlayer();
         }
 
-        void OnDestroy() {
-            CoinData.OnCoinCollected -= ActivyCoinParticle;
-        }
+        
 
         void InstantiatePlayer() {
             if (currentPlayer != null) DestroyObject(currentPlayer.gameObject);
@@ -65,6 +82,8 @@ namespace JumpToTower.Managers{
             currentLevelModule.SetDataBlocks(obstacles);
             currentLevelModule.SetDataCoins(obstacles);
             currentGoals = Common.Clone(currentLevelModule.Goals);
+
+            if (OnResetCoin != null) OnResetCoin();
         }
 
         void NextLevel() {
@@ -75,7 +94,7 @@ namespace JumpToTower.Managers{
         public void DefineNextLevel() {
             DefineLevel();
             if (currentLevel == Common.LEVEL.endGame) {
-
+                if (OnEndGame != null) OnEndGame();
             } else {
                 ConstructLevel();
             }
