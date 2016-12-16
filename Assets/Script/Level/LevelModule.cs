@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JumpToTower.Collectables;
+
 [System.Serializable]
 public class LevelModule : ScriptableObject {
 
@@ -16,6 +17,10 @@ public class LevelModule : ScriptableObject {
     [Header("Coins of Level")]
     [SerializeField]
     private List<CoinModule> coins;
+
+    [Header("Goals")]
+    [SerializeField]
+    private List<GoalModule> goals;
 
 
     public Common.LEVEL Level{
@@ -33,6 +38,12 @@ public class LevelModule : ScriptableObject {
     public List<CoinModule> Coins {
         get {
             return coins;
+        }
+    }
+
+    public List<GoalModule> Goals {
+        get {
+            return goals;
         }
     }
 

@@ -10,10 +10,10 @@ using JumpToTower.Collectables;
         private Text cointText;
 
         private string coinBaseText = "Colected coins {0}";
-        private float mount = 0;
+        private float mountCoin = 0;
 
         void Start() {
-            cointText.text = string.Format(coinBaseText, mount);
+            cointText.text = string.Format(coinBaseText, mountCoin);
             CoinData.OnCoinCollected += ChangeCoinText;
         }
 
@@ -21,9 +21,9 @@ using JumpToTower.Collectables;
             CoinData.OnCoinCollected -= ChangeCoinText;
         }
 
-        private void ChangeCoinText (CoinData coin){
-            mount += coin.Mount;
-            cointText.text = string.Format(coinBaseText, mount);
+        private void ChangeCoinText (GoalModule.GoalType type, float amount) {
+            mountCoin += amount;
+            cointText.text = string.Format(coinBaseText, mountCoin);
         }
 
     }

@@ -5,11 +5,14 @@ using System.Collections;
 namespace JumpToTower.Collectables {
     public class CoinData : MonoBehaviour {
 
-        public delegate void CoinCollected(CoinData coinData);
+        public delegate void CoinCollected(GoalModule.GoalType type, float amount);
+        public delegate void CoinPosition(Vector3 position);
 
         public static event CoinCollected OnCoinCollected;
+        public static event CoinPosition OnCoinPosition;
 
         private bool isActivy;
+        private const float waitDestroyTime = 1f;
 
         [SerializeField]
         float mount = 1;
@@ -33,16 +36,15 @@ namespace JumpToTower.Collectables {
             if (!isActivy) return;
 
             isActivy = false;
-            OnCoinCollected(this);
 
-            StartCoroutine(DestroyObject());
+            OnCoinPosition(transform.position);
+            OnCoinCollected(GoalModule.GoalType.coin, Mount);
+            
+            DestroyObject();
         }
 
-        IEnumerator DestroyObject() {
-            yield return new WaitForSeconds(1f);
+        void DestroyObject() {
             Destroy(gameObject);
         }
-
-        
     }
 }

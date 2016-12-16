@@ -6,21 +6,19 @@ namespace JumpToTower.Managers {
     public class ParticleSystemController : MonoBehaviour {
 
         [SerializeField]
-        private GameObject particlePrefab;
-        // Use this for initialization
+        private ParticleController particlePrefab;
+
         void Start() {
-            CoinData.OnCoinCollected += ActivyCoinParticle;
+            CoinData.OnCoinPosition += ActivyCoinParticle;
         }
 
         void OnDestroy() {
-            CoinData.OnCoinCollected -= ActivyCoinParticle;
+            CoinData.OnCoinPosition -= ActivyCoinParticle;
         }
 
-        void ActivyCoinParticle(CoinData parent) {
-            var particle = Instantiate(particlePrefab, parent.transform.position, Quaternion.identity) as GameObject;
-
-            particle.transform.SetParent(parent.transform);
-            particle.GetComponentInChildren<ParticleSystem>().Play();  
+        void ActivyCoinParticle(Vector3 position) {
+            var particle = Instantiate(particlePrefab, position, Quaternion.identity) as ParticleController;
+            particle.PlayParticle();
         }
     }
 }
