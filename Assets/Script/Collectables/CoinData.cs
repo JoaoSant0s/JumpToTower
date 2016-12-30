@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using JumpToTower.Level;
 
 namespace JumpToTower.Collectables {
     public class CoinData : MonoBehaviour {

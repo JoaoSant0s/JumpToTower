@@ -3,8 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using JumpToTower.Collectables;
 using JumpToTower.Managers;
+using JumpToTower.Level;
 
-    namespace JumpToTower.UI {
+namespace JumpToTower.UI {
     public class UIController : MonoBehaviour {
 
         [SerializeField]

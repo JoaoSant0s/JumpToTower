@@ -2,50 +2,52 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using JumpToTower.Managers;
 
-public class MenuController : MonoBehaviour {
+namespace JumpToTower.UI {
+    public class MenuController : MonoBehaviour {
 
-    public delegate void SettingsActivity();
-    public static event SettingsActivity OnSettingsActivity;
+        public delegate void SettingsActivity();
+        public static event SettingsActivity OnSettingsActivity;
 
-    [Space(5)]
-    [SerializeField]
-    GameObject menuPanel;
+        [Space(5)]
+        [SerializeField]
+        GameObject menuPanel;
 
-    [Header("Buttons list")]
-    [Space(10)]
-    [SerializeField]
-    Button buttonPlay;
-    [SerializeField]
-    Button buttonStteings;
+        [Header("Buttons list")]
+        [Space(10)]
+        [SerializeField]
+        Button buttonPlay;
+        [SerializeField]
+        Button buttonStteings;
 
-    
 
-    void Start() {
-        SettingsController.OnMenuActivity += MenuActivity;
 
-        buttonPlay.onClick.AddListener(ActionPlay);
-        buttonStteings.onClick.AddListener(ActionSettings);
-    }
+        void Start() {
+            SettingsController.OnMenuActivity += MenuActivity;
 
-    void OnDestroy() {
-        SettingsController.OnMenuActivity -= MenuActivity;
-    }
+            buttonPlay.onClick.AddListener(ActionPlay);
+            buttonStteings.onClick.AddListener(ActionSettings);
+        }
 
-    void MenuActivity() {
-        menuPanel.SetActive(true);
-    }
+        void OnDestroy() {
+            SettingsController.OnMenuActivity -= MenuActivity;
+        }
 
-    void ActionPlay() {
-        SceneManager.LoadScene("Game");
-    }
+        void MenuActivity() {
+            menuPanel.SetActive(true);
+        }
 
-    void ActionSettings() {
-        if (OnSettingsActivity != null) {
-            menuPanel.SetActive(false);
-            OnSettingsActivity();
+        void ActionPlay() {
+            SceneManager.LoadScene("Game");
+        }
+
+        void ActionSettings() {
+            if (OnSettingsActivity != null) {
+                menuPanel.SetActive(false);
+                OnSettingsActivity();
+            }
         }
     }
-
 }
 

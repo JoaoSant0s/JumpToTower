@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+namespace JumpToTower.Managers {
+    public class ParticleController : MonoBehaviour {
 
-public class ParticleController : MonoBehaviour {
+        public void DestroyParticle() {
+            StartCoroutine(StarttCoroutine());
+        }
 
-    public void DestroyParticle() {
-        StartCoroutine(StarttCoroutine());
-    }
+        IEnumerator StarttCoroutine() {
+            yield return new WaitForSeconds(GetComponentInChildren<ParticleSystem>().duration);
+            Destroy(gameObject);
+        }
 
-    IEnumerator StarttCoroutine() {
-        yield return new WaitForSeconds(GetComponentInChildren<ParticleSystem>().duration);
-        Destroy(gameObject);
-    }
-
-    public void PlayParticle() {
-        GetComponentInChildren<ParticleSystem>().Play();
-        DestroyParticle();
+        public void PlayParticle() {
+            GetComponentInChildren<ParticleSystem>().Play();
+            DestroyParticle();
+        }
     }
 }

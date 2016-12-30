@@ -1,36 +1,39 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using JumpToTower.UI;
 
-public class SettingsController : MonoBehaviour {
-    public delegate void MenuActivity();
-    public static event MenuActivity OnMenuActivity;
+namespace JumpToTower.Managers {
+    public class SettingsController : MonoBehaviour {
+        public delegate void MenuActivity();
+        public static event MenuActivity OnMenuActivity;
 
 
-    [SerializeField]
-    GameObject settingsPanel;
+        [SerializeField]
+        GameObject settingsPanel;
 
-    [SerializeField]
-    Button buttonReturn;
+        [SerializeField]
+        Button buttonReturn;
 
-    void Start () {
-        buttonReturn.onClick.AddListener(ButtonReturn);
-        MenuController.OnSettingsActivity += SettingsActivity;
-    }
-	
-	void OnDestroy () {
-        MenuController.OnSettingsActivity -= SettingsActivity;
-    }
-
-    void ButtonReturn() {
-        if (OnMenuActivity != null) {
-            OnMenuActivity();
-            settingsPanel.SetActive(false);
+        void Start() {
+            buttonReturn.onClick.AddListener(ButtonReturn);
+            MenuController.OnSettingsActivity += SettingsActivity;
         }
-    }
+
+        void OnDestroy() {
+            MenuController.OnSettingsActivity -= SettingsActivity;
+        }
+
+        void ButtonReturn() {
+            if (OnMenuActivity != null) {
+                OnMenuActivity();
+                settingsPanel.SetActive(false);
+            }
+        }
 
 
-    void SettingsActivity() {
-        settingsPanel.SetActive(true);
+        void SettingsActivity() {
+            settingsPanel.SetActive(true);
+        }
     }
 }

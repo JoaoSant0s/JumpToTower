@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using JumpToTower.Collectables;
 using JumpToTower.Player;
+using JumpToTower.Level;
 
 namespace JumpToTower.Managers{
     public class GameManager : MonoBehaviour{
